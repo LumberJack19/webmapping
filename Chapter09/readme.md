@@ -3,7 +3,7 @@
 Chapter 9: Mapping with D3
 ===========================
 
-Now that you have a basic understanding of some foundational D3 concepts, it is time to make a map! Chapter 9 includes three shorter lessons (one optional) as you work on your final project proposal and ends with Activity 9, creating your first D3 map.
+Now that you have a basic understanding of some foundational D3 concepts, it's time to make a map! Chapter 9 includes three shorter lessons (one optional) as you work on your final project proposal and ends with Activity 9, creating your first D3 map.
 
 -   In Lesson 1, we cover some useful ancillary tools and techniques, including the TopoJSON data format, the MapShaper web application, and `Promise.all()` for combining multiple AJAX calls.
 -   In Lesson 2, we tackle the somewhat complex but vital topic of D3 map projections, walking through D3's projection and path generators to map spatial data as vector linework in the browser.
@@ -19,7 +19,7 @@ Lesson 1: D3 Helper Tools and Techniques
 
 ### I. An Introduction to TopoJSON
 
-_**[TopoJSON](https://github.com/mbostock/topojson/wiki)**_ is the first geospatial data format for the Web that encodes topology. As briefly introduced in Chapter 3, _**topology**_ describes the digital encoding of spatial relationships of connected/unconnected, adjacent/detached, inside/outside, etc., into data captures of geographic phenomena. We did not worry much about topology for Lab 1, as the map only drew points rather than lines or polygons (technically, the proportional symbols were polygonal SVGs, but centered on a single point spatial coordinate). Topology is important for rendering polygons for the Lab 2 choropleth map.
+_**[TopoJSON](https://github.com/mbostock/topojson/wiki)**_ is the first geospatial data format for the Web that encodes topology. As briefly introduced in Chapter 3, _**topology**_ describes the digital encoding of spatial relationships of connected/unconnected, adjacent/detached, inside/outside, etc., into data captures of geographic phenomena. We didn't worry much about topology for Lab 1, as the map only drew points rather than lines or polygons (technically, the proportional symbols were polygonal SVGs, but centered on a single point spatial coordinate). Topology is important for rendering polygons for the Lab 2 choropleth map.
 
 For desktop GIS software, [topology](http://webhelp.esri.com/arcgisserver/9.3/java/index.htm#geodatabases/topology_basics.htm) is encoded by coverage and geodatabase file formats but not in shapefiles. The advantages of topological data formats over "spaghetti model" data formats such as shapefiles and GeoJSON are threefold:
 
