@@ -54,11 +54,11 @@ This workbook covers foundations in several coding libraries used for different 
 
 While this workbook outlines the fundamental aspects of web cartography and visualization, including coding tutorials, it does assume a basic knowledge of programming concepts. 
 
-- If you do not have any programming experience, we recommend first completing the [Learn How to Code](https://www.codecademy.com/learn/learn-how-to-code) broad overview of programming concepts (~1 hour). 
+- If you have little to no programming experience, we recommend first completing the [Learn How to Code](https://www.codecademy.com/learn/learn-how-to-code) broad overview of programming concepts (~1 hour). 
 
-- If you do not have experience with HTML or want a refresher, we recommend completing Lesson 1 (and only Lesson 1) of the [Introduction to HTML Tutorial](https://www.codecademy.com/learn/learn-html) (~1 hour). 
+- If you have no experience with HTML or want a refresher, we recommend completing Lesson 1 (and only Lesson 1) of the [Introduction to HTML Tutorial](https://www.codecademy.com/learn/learn-html) (~1 hour). 
 
-- If you do not have experience with CSS or want a refresher, we recommend completing Lesson 1 (and only Lesson 1) of the [Introduction to CSS Tutorial](https://www.codecademy.com/learn/learn-css) (~2 hours).
+- If you have no experience with CSS or want a refresher, we recommend completing Lesson 1 (and only Lesson 1) of the [Introduction to CSS Tutorial](https://www.codecademy.com/learn/learn-css) (~2 hours).
 
 ## How to Use this Workbook
 
