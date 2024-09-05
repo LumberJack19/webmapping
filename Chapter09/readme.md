@@ -32,7 +32,7 @@ For desktop GIS software, [topology](http://webhelp.esri.com/arcgisserver/9.3/ja
 
 This last point is especially important for mapping vector data on the Open Web. While bandwidths and processors are constantly improving, datasets also are growing in size and a significant performance penalty remains for loading very large datasets into the browser, particularly on mobile networks. The GeoJSON format was designed based on the [Simple Features standard](http://www.opengeospatial.org/standards/sfa), and stores points, lines, and polygons as individual features in a `FeatureCollection`. Thus, in any polygon dataset, each line that forms an edge between two polygons is duplicated—it is stored separately for each feature that uses it.
 
-The TopoJSON format, created by D3 creator Mike Bostock, eliminates all of this duplicate data by implementing topology using JSON syntax. TopoJSON files are a fraction of the size of the equivalent data as GeoJSON, making them much faster to draw in the browser. Rather than storing all of the vertices as coordinate arrays for each feature, TopoJSON stores a list of Arcs for each feature, a separate list of arc coordinates, and a mathematical transform to georeference those coordinates within the [EPSG:4326/WGS 84](https://spatialreference.org/ref/epsg/wgs-84/) coordinate reference system.
+The TopoJSON format, created by D3 creator Mike Bostock, eliminates all of this duplicate data by implementing topology using JSON syntax. TopoJSON files are a fraction of the size of the equivalent data as GeoJSON, making them much faster to draw in the browser. Rather than storing all of the vertices as coordinate arrays for each feature, TopoJSON stores a list of Arcs for each feature, a separate list of arc coordinates, and a mathematical transform to georeference those coordinates within the [EPSG:4326/WGS 84](https://spatialreference.org/ref/epsg/4326/) coordinate reference system.
 
 Examples 1.1 and 1.2 show a single, relatively simple polygon feature stored as GeoJSON and TopoJSON, respectively. Compare these two examples and notice the differences in data structure.
 
@@ -181,7 +181,7 @@ D3, Leaflet, and other web mapping libraries do not natively support TopoJSON da
 
 We will use Mike Bostock's small `topojson.js` library to convert TopoJSON to GeoJSON in browser.
 
-> ### **Download [topojson.js](https://github.com/mbostock/topojson) from the link above and place it in your _lib_ folder. Add a script link in _index.html_.**
+> ### **Download [topojson.js](https://github.com/topojson/topojson/releases/tag/v3.0.2) (search for "latest release", and download the "topojson.zip"), and place it in your _lib_ folder. Add a script link in _index.html_.**
 
 As explained in the `topojson.js` [API Reference](https://github.com/topojson/topojson/blob/master/README.md), the `topojson.feature()` method translates TopoJSON to GeoJSON. The `topojson.feature()` method takes two parameters: the variable holding the TopoJSON data (created from our callback in Example 1.4) and the object within that variable containing the TopoJSON formatted data we want to convert (Example 1.5).
 

@@ -59,7 +59,7 @@ It is standard practice to include either _leaflet.js_ or _leaflet-src.js_ in t
 
 With Leaflet "installed", let's take a look at some of the resources provided on the website to get started. The [Tutorials](http://leafletjs.com/examples.html) tab includes over a dozen helpful tutorials written at a beginner-level in web mapping but assuming some prior knowledge of HTML, CSS, and JavaScript. You will review two tutorials within this lesson: [_Leaflet Quick Start Guide_](http://leafletjs.com/examples/quick-start.html) and [_Using GeoJSON with Leaflet_](http://leafletjs.com/examples/geojson.html). These tutorials are excellent, and so we rely on them in the following instructions rather than replicating.
 
-> ### **Read and follow the instructions in the [_Leaflet Quick Start Guide_](http://leafletjs.com/examples/quick-start.html) and [_Using GeoJSON with Leaflet_](http://leafletjs.com/examples/geojson.html) tutorials. Save your scripts from each tutorial in two files called _quickstartTutorial.js_ and _geojsonTutorial.js_, placing both in your _unit-2_ _js_ folder.**
+> ### **Read and follow the instructions in the [_Leaflet Quick Start Guide_](http://leafletjs.com/examples/quick-start.html) tutorial. Save your script from the tutorial in a file called _quickstartTutorial.js_ and place it in your _unit-2_ _js_ folder.**
 
 Your script should look approximately like Example 1.1 after completing the _Leaflet Quick Start Guide_.
 
@@ -67,29 +67,27 @@ Your script should look approximately like Example 1.1 after completing the _Lea
 
     /* Example from Leaflet Quick Start Guide*/
     
-    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([51.505, -0.09], 13);
     
-    //add tile layer...replace project id and accessToken with your own
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'your.mapbox.project.id',
-        accessToken: 'your.mapbox.public.access.token'
-    }).addTo(mymap);
+    //add tile layer
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+       maxZoom: 19,
+       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
     
-    var marker = L.marker([51.5, -0.09]).addTo(mymap);
+    var marker = L.marker([51.5, -0.09]).addTo(map);
     
     var circle = L.circle([51.508, -0.11], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,    radius: 500
-    }).addTo(mymap);
+    }).addTo(map);
     
     var polygon = L.polygon([
         [51.509, -0.08],
         [51.503, -0.06],
         [51.51, -0.047]
-    ]).addTo(mymap);
+    ]).addTo(map);
     
     marker.bindPopup("<strong>Hello world!</strong><br />I am a popup.").openPopup();
     circle.bindPopup("I am a circle.");
@@ -98,7 +96,7 @@ Your script should look approximately like Example 1.1 after completing the _Lea
     var popup = L.popup()
         .setLatLng([51.5, -0.09])
         .setContent("I am a standalone popup.")
-        .openOn(mymap);
+        .openOn(map);
     
     var popup = L.popup();
     
@@ -106,23 +104,23 @@ Your script should look approximately like Example 1.1 after completing the _Lea
         popup
             .setLatLng(e.latlng)
             .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(mymap);
+            .openOn(map);
     }
     
-    mymap.on('click', onMapClick);
+    map.on('click', onMapClick);
 
 
-When completing the tutorial, be sure to add a `<div>` element with the `id "mapid"` to the `<body>` of your _index.html_ file, and assigned a `height` to `#mapid` in your _style.css_ stylesheet. Figure 1.1 illustrates the expected slippy map resulting from the _Leaflet Quick Start Guide_.
+When completing the tutorial, be sure to add a `<div>` element with the `id "map"` to the `<body>` of your _index.html_ file, and assigned a `height` to `#map` in your _style.css_ stylesheet. Figure 1.1 illustrates the expected slippy map resulting from the _Leaflet Quick Start Guide_.
 
 ![figure4.1.1.png](img/figure4.1.1.png)
 
 ###### Figure 1.1: An example slippy map created during the _Leaflet Quick Start Guide_ tutorial
 
-Leaflet.js is the foundation for Mapbox.js, maintained by a large web mapping company of the same name, and the original developer of Leaflet (Vladimir Agafonkin) is now a software engineer for Mapbox. Accordingly, the _Leaflet Quick Start Guide_ makes use of a Mapbox tileset that requires an [access token](https://account.mapbox.com/access-tokens/) (You may need to create a Mapbox account first). You may follow the format given in the tutorial, but if so, note that you must replace the text _your.mapbox.project.id_ and _your.mapbox.public.access.token_ with your unique project id and access token acquired from Mapbox.
+Leaflet.js is the foundation for Mapbox.js, maintained by a large web mapping company of the same name, and the original developer of Leaflet (Vladimir Agafonkin) is now a software engineer for Mapbox. 
 
-Alternatively, you can avoid creating a Mapbox account by using an open tileset from the [Leaflet-providers preview website.](http://leaflet-extras.github.io/leaflet-providers/preview/) Example 1.2 makes use of the primary OpenStreetMap (OSM) tileset.
+The basemap in the example is called a _tileset_. There are a number of open tilesets that you can use in your Leaflet maps. The example uses an openstreetmap tileset from the [Leaflet-providers preview website](http://leaflet-extras.github.io/leaflet-providers/preview/), as shown in Example 1.2.
 
-###### Example 1.2: Replacing the Mapbox tile layer with an OpenStreetMap tileset in _main.js_
+###### Example 1.2: Tile layer with an OpenStreetMap tileset in _main.js_
 
     //Example 1.1 line 5...add tile layer
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -130,22 +128,15 @@ Alternatively, you can avoid creating a Mapbox account by using an open tileset 
     }).addTo(map);
 
 
-For both tilesets, the URL string for the tile layer has some special characters in it. The URL format reflects the standardized structure of slippy map tilesets, which consist of 256x256 pixel images in a set of nested subdirectories on the tile server. Tileset URL variables include:
+For tilesets, the URL string for the tile layer has some special characters in it. The URL format reflects the standardized structure of slippy map tilesets, which consist of 256x256 pixel images in a set of nested subdirectories on the tile server. Tileset URL variables include:
 
 *   `{z}` represents the zoom level, typically a number between 0 (very small scale; the entire globe should be visible in the browser window) and 22 (very large scale)
 *   `{x}` is the horizontal coordinate, numbered left-to-right starting from 0 at the western boundary of the tileset
 *   `{y}` is the vertical coordinate, which also forms the root filename of each tile image, numbered from the top (north) edge of the tileset down
 
-In Mapbox tilesets:
+> ### **After getting a basic slippy map to load, complete the [_Using GeoJSON with Leaflet_](http://leafletjs.com/examples/geojson.html) tutorial. You'll have to copy the code for the tileset and _map_ object from the _Leaflet Quick Start Guide_. Save your script from the tutorial in a new file called _geojsonTutorial.js_, placing it in your _unit-2_ _js_ folder.**
 
-*   `{id}` represents the project id, given in the `L.tileLayer()` settings object, allowing use custom-styled Mapbox Streets tiles
-*   `{accessToken}` represents your Mapbox public token, also given in the `L.tileLayer()` settings object, allowing Mapbox to track the usage of your tileset for billing purposes
-
-In OSM and other tilesets:
-
-*   `{s}` represents the server instance from which the tiles are drawn, as many hosts of public-facing tilesets utilize multiple servers to avoid slow response times
-
-After getting a basic slippy map to load, complete the [_Using GeoJSON with Leaflet_](http://leafletjs.com/examples/geojson.html) tutorial. The second tutorial integrates GeoJSON data—introduced last chapter—with your slippy map via Leaflet's `L.geoJson()` method. Note that the examples given by the tutorial utilize GeoJSON `features` arrays assigned to variables, rather than a `FeatureCollection` object imported via AJAX. 
+The second tutorial integrates GeoJSON data—introduced last chapter—with your slippy map via Leaflet's `L.geoJson()` method. Note that the examples given by the tutorial utilize GeoJSON `features` arrays assigned to variables, rather than a `FeatureCollection` object imported via AJAX. 
 
 Figure 1.2 illustrates the expected slippy map resulting from the _Using GeoJSON with Leaflet_ tutorial. Lesson 2 describes how to integrate your GeoJSON data imported via AJAX with the `L.geoJson()` method.
 
@@ -223,12 +214,9 @@ Next, let's look at the `L.tileLayer()` and `.addTo()` methods. `L.tileLayer` ta
 ###### Example 1.4: Adding a tile layer using a variable and the `addTo()` method in _quickstartTutorial.js_
 
     //Example 1.1 line 5...add tile layer
-    var tileLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'your.mapbox.project.id',
-        accessToken: 'your.mapbox.public.access.token'
-    });
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
     
     tileLayer.addTo(map);
 
@@ -241,7 +229,7 @@ We will return to classes and inheritance as key concepts in object-oriented pro
 
 ###### Figure 1.8: Types of Leaflet layer groups
 
-Based on the discussion in this lesson, you should now be able to review all of the methods used in the _Leaflet Quick Start Guide_ and _Using_ _GeoJSON with Leaflet_ tutorials using the Leaflet API documentation. Note that the [`.on()`](https://leafletjs.com/reference-1.6.0.html#evented) method works similarly to the `forEach` method that we used in Week 2, but with a wider range of events available to it. 
+Based on the discussion in this lesson, you should now be able to review all of the methods used in the _Leaflet Quick Start Guide_ and _Using_ _GeoJSON with Leaflet_ tutorials using the Leaflet API documentation. Note that the [`.on()`](https://leafletjs.com/reference-1.6.0.html#evented) method works similarly to the `onEachFeature` method that we used in Week 2, but with a wider range of events available to it. 
 
 > ### **Using the Leaflet API documentation page, find and read the description of each method used in the _Leaflet Quick Start Guide_ and _Using_ _GeoJSON with Leaflet_ tutorials. Add a comment for each method in your _quickstartTutorial.js_ and _geojsonTutorial.js_ files, describing in your own words what each method does.**
 
